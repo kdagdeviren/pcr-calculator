@@ -6,13 +6,11 @@
     <title>pCR Calculator / pCR Hesaplayıcı</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
         }
-
         #langScreen {
             position: fixed; inset: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -20,11 +18,8 @@
             z-index: 9999;
         }
         .lang-card {
-            background: #fff;
-            border-radius: 22px;
-            padding: 48px 56px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            background: #fff; border-radius: 22px; padding: 48px 56px;
+            text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.25);
             max-width: 480px; width: 90%;
         }
         .lang-card .logo { font-size: 3em; margin-bottom: 12px; }
@@ -32,11 +27,9 @@
         .lang-card p  { color: #777; font-size: 0.95em; margin-bottom: 32px; }
         .lang-buttons { display: flex; gap: 16px; justify-content: center; }
         .lang-btn {
-            flex: 1; padding: 16px 20px;
-            border: 2px solid #667eea; border-radius: 12px;
-            background: #fff; cursor: pointer;
-            font-size: 1.05em; font-weight: 700; color: #667eea;
-            transition: all 0.25s;
+            flex: 1; padding: 16px 20px; border: 2px solid #667eea;
+            border-radius: 12px; background: #fff; cursor: pointer;
+            font-size: 1.05em; font-weight: 700; color: #667eea; transition: all 0.25s;
         }
         .lang-btn:hover {
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -44,25 +37,20 @@
             box-shadow: 0 6px 20px rgba(102,126,234,0.35);
         }
         .lang-btn .flag { font-size: 1.6em; display: block; margin-bottom: 4px; }
-
         #disclaimerModal {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.65);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.65);
             display: none; align-items: center; justify-content: center;
             z-index: 9998; padding: 20px;
         }
         #disclaimerModal.active { display: flex; }
         .modal-card {
-            background: #fff;
-            border-radius: 18px;
-            max-width: 620px; width: 100%;
-            overflow: hidden;
-            box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+            background: #fff; border-radius: 18px; max-width: 620px; width: 100%;
+            overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
             animation: modalIn 0.3s ease;
         }
         @keyframes modalIn {
             from { transform: scale(0.92); opacity: 0; }
-            to   { transform: scale(1);    opacity: 1; }
+            to   { transform: scale(1); opacity: 1; }
         }
         .modal-header {
             background: linear-gradient(135deg, #e53935, #b71c1c);
@@ -78,16 +66,12 @@
         }
         .modal-body ul li { margin-bottom: 6px; }
         .modal-body .highlight-box {
-            background: #fff3e0;
-            border-left: 4px solid #f9a825;
-            border-radius: 6px;
-            padding: 12px 16px;
-            margin: 16px 0;
+            background: #fff3e0; border-left: 4px solid #f9a825;
+            border-radius: 6px; padding: 12px 16px; margin: 16px 0;
             font-size: 0.93em; color: #5d4037; line-height: 1.6;
         }
         .modal-footer {
-            padding: 18px 28px 24px;
-            border-top: 1px solid #eee;
+            padding: 18px 28px 24px; border-top: 1px solid #eee;
             display: flex; flex-direction: column; gap: 12px;
         }
         .checkbox-row {
@@ -99,80 +83,48 @@
             accent-color: #667eea; cursor: pointer; flex-shrink: 0;
         }
         #acceptBtn {
-            padding: 13px;
-            background: #ccc; color: #fff;
-            border: none; border-radius: 10px;
-            font-size: 1em; font-weight: 700;
-            cursor: not-allowed; transition: all 0.3s;
-            width: 100%;
+            padding: 13px; background: #ccc; color: #fff;
+            border: none; border-radius: 10px; font-size: 1em; font-weight: 700;
+            cursor: not-allowed; transition: all 0.3s; width: 100%;
         }
-        #acceptBtn.enabled {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            cursor: pointer;
-        }
-        #acceptBtn.enabled:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(102,126,234,0.4);
-        }
-
+        #acceptBtn.enabled { background: linear-gradient(135deg, #667eea, #764ba2); cursor: pointer; }
+        #acceptBtn.enabled:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(102,126,234,0.4); }
         #app { display: none; }
         #app.visible { display: block; }
-
         .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 8px 32px rgba(102,126,234,0.15);
-            overflow: hidden;
+            max-width: 1200px; margin: 40px auto; background: #fff;
+            border-radius: 18px; box-shadow: 0 8px 32px rgba(102,126,234,0.15); overflow: hidden;
         }
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff; padding: 32px 0 20px; text-align: center;
-            position: relative;
+            color: #fff; padding: 32px 0 20px; text-align: center; position: relative;
         }
         .header h1 { font-size: 2.1em; margin-bottom: 6px; }
         .header p  { font-size: 1em; opacity: 0.93; margin: 3px 0; }
-
         .lang-switch {
             position: absolute; top: 16px; right: 20px;
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.5);
-            border-radius: 8px; padding: 6px 14px;
-            color: #fff; cursor: pointer; font-size: 0.85em;
-            transition: background 0.2s;
+            background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 8px; padding: 6px 14px; color: #fff; cursor: pointer;
+            font-size: 0.85em; transition: background 0.2s;
         }
         .lang-switch:hover { background: rgba(255,255,255,0.35); }
-
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px; padding: 30px;
-        }
+        .content { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; padding: 30px; }
         .panel {
-            background: #f8f9fa; border-radius: 14px;
-            padding: 22px 18px; min-height: 500px;
-            box-shadow: 0 2px 12px rgba(102,126,234,0.08);
-            display: flex; flex-direction: column;
+            background: #f8f9fa; border-radius: 14px; padding: 22px 18px; min-height: 500px;
+            box-shadow: 0 2px 12px rgba(102,126,234,0.08); display: flex; flex-direction: column;
         }
         .panel h2 {
-            color: #667eea; font-size: 1.25em;
-            margin-bottom: 18px;
+            color: #667eea; font-size: 1.25em; margin-bottom: 18px;
             border-bottom: 2px solid #667eea; padding-bottom: 6px;
         }
         .form-group { margin-bottom: 16px; }
-        .form-group label {
-            font-weight: 600; font-size: 0.97em;
-            margin-bottom: 7px; display: block; color: #333;
-        }
+        .form-group label { font-weight: 600; font-size: 0.97em; margin-bottom: 7px; display: block; color: #333; }
         .form-group select {
-            width: 100%; padding: 9px; border-radius: 7px;
-            border: 2px solid #ddd; font-size: 0.93em;
-            transition: border-color 0.3s; background: white; cursor: pointer;
+            width: 100%; padding: 9px; border-radius: 7px; border: 2px solid #ddd;
+            font-size: 0.93em; transition: border-color 0.3s; background: white; cursor: pointer;
         }
         .form-group select:hover  { border-color: #667eea; }
         .form-group select:focus  { border-color: #667eea; outline: none; }
-
         .result-panel {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: #fff; border-radius: 14px; padding: 24px 18px;
@@ -183,120 +135,77 @@
             margin-bottom: 18px; font-size: 1.22em; padding-bottom: 5px;
         }
         .pcr-value {
-            font-size: 2.5em; font-weight: bold;
-            margin: 16px 0 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.11);
-            text-align: center;
+            font-size: 2.5em; font-weight: bold; margin: 16px 0 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.11); text-align: center;
         }
         .pcr-label { text-align: center; font-size: 1em; margin-bottom: 4px; }
         .progress-bar {
-            width: 100%; height: 30px;
-            background: rgba(255,255,255,0.18);
-            border-radius: 15px; overflow: hidden;
-            margin: 18px 0; position: relative;
+            width: 100%; height: 30px; background: rgba(255,255,255,0.18);
+            border-radius: 15px; overflow: hidden; margin: 18px 0; position: relative;
         }
         .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            height: 100%; background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
             transition: width 0.5s; border-radius: 15px;
         }
-        .threshold-line {
-            position: absolute; top: 0; bottom: 0;
-            width: 3px; background: #ffd700; left: 27.7%;
-        }
+        .threshold-line { position: absolute; top: 0; bottom: 0; width: 3px; background: #ffd700; left: 27.7%; }
         .classification {
             text-align: center; padding: 12px; border-radius: 8px;
             margin-top: 14px; font-size: 1.1em; font-weight: bold;
         }
-        .pcr-positive {
-            background: rgba(76,175,80,0.15); color: #4caf50;
-            border: 2px solid #4caf50;
-        }
-        .pcr-negative {
-            background: rgba(244,67,54,0.16); color: #f44336;
-            border: 2px solid #f44336;
-        }
+        .pcr-positive { background: rgba(76,175,80,0.15); color: #4caf50; border: 2px solid #4caf50; }
+        .pcr-negative { background: rgba(244,67,54,0.16); color: #f44336; border: 2px solid #f44336; }
         .performance-box {
-            background: rgba(255,255,255,0.13);
-            border: 1px solid rgba(255,255,255,0.35);
-            border-radius: 10px; padding: 12px 14px; margin-top: 14px;
-            font-size: 0.88em;
+            background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 10px; padding: 12px 14px; margin-top: 14px; font-size: 0.88em;
         }
         .performance-box h4 { margin: 0 0 8px; font-size: 0.95em; opacity: 0.95; }
         .perf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
         .perf-item { display: flex; flex-direction: column; }
-        .perf-item span:first-child {
-            font-size: 0.78em; opacity: 0.8;
-            text-transform: uppercase; letter-spacing: 0.04em;
-        }
+        .perf-item span:first-child { font-size: 0.78em; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.04em; }
         .perf-item span:last-child { font-size: 1.15em; font-weight: 700; }
         .info-box {
-            background: rgba(255,255,255,0.18); padding: 11px;
-            border-radius: 8px; margin-top: 12px;
-            font-size: 0.93em; line-height: 1.5;
+            background: rgba(255,255,255,0.18); padding: 11px; border-radius: 8px;
+            margin-top: 12px; font-size: 0.93em; line-height: 1.5;
         }
         .high-pcr-button {
-            margin-top: auto; padding: 10px 0;
-            background: #667eea; color: #fff; border: none;
-            border-radius: 7px; font-weight: bold;
+            margin-top: auto; padding: 10px 0; background: #667eea; color: #fff;
+            border: none; border-radius: 7px; font-weight: bold;
             cursor: pointer; font-size: 0.9em; transition: all 0.3s;
         }
-        .high-pcr-button:hover {
-            background: #5568d3; transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
+        .high-pcr-button:hover { background: #5568d3; transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
         .details-toggle {
-            margin-top: 15px; padding: 8px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 6px; cursor: pointer;
-            text-align: center; font-size: 0.85em;
-            border: 1px solid rgba(255,255,255,0.4);
-            transition: background 0.2s;
+            margin-top: 15px; padding: 8px; background: rgba(255,255,255,0.2);
+            border-radius: 6px; cursor: pointer; text-align: center; font-size: 0.85em;
+            border: 1px solid rgba(255,255,255,0.4); transition: background 0.2s;
         }
         .details-toggle:hover { background: rgba(255,255,255,0.3); }
-
-        /* ✅ DEĞİŞİKLİK 1: color: #fff ve word-break eklendi */
+        /* ✅ FIX: color:#fff eklendi */
         .details-content {
             display: none; margin-top: 10px; padding: 12px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 6px; font-size: 0.8em; line-height: 1.6;
-            color: #fff;
-            word-break: break-word;
+            background: rgba(255,255,255,0.15); border-radius: 6px;
+            font-size: 0.8em; line-height: 1.6;
+            color: #fff; word-break: break-word;
         }
         .details-content.show { display: block; }
-
         .disclaimer-banner {
-            background: #fff8e1; border-top: 3px solid #f9a825;
-            padding: 14px 30px; display: flex;
-            align-items: flex-start; gap: 12px;
+            background: #fff8e1; border-top: 3px solid #f9a825; padding: 14px 30px;
+            display: flex; align-items: flex-start; gap: 12px;
             font-size: 0.92em; color: #5d4037; line-height: 1.55;
         }
         .disclaimer-banner .disc-icon { font-size: 1.5em; flex-shrink: 0; margin-top: 1px; }
         .disclaimer-banner strong { color: #e65100; }
-
-        .footer {
-            background: #2d2d3a; color: #ccc;
-            padding: 22px 30px; font-size: 0.85em; line-height: 1.7;
-        }
-        .footer-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 20px 40px; max-width: 1140px; margin: 0 auto;
-        }
-        .footer-section h4 {
-            color: #fff; margin: 0 0 8px;
-            font-size: 0.95em;
-            border-bottom: 1px solid #444; padding-bottom: 4px;
-        }
+        .footer { background: #2d2d3a; color: #ccc; padding: 22px 30px; font-size: 0.85em; line-height: 1.7; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; max-width: 1140px; margin: 0 auto; }
+        .footer-section h4 { color: #fff; margin: 0 0 8px; font-size: 0.95em; border-bottom: 1px solid #444; padding-bottom: 4px; }
         .footer-section p, .footer-section li { margin: 3px 0; color: #bbb; }
         .footer-section ul { padding-left: 16px; margin: 4px 0; }
         .footer-bottom {
-            margin-top: 16px; padding-top: 12px;
-            border-top: 1px solid #444; text-align: center;
-            color: #888; font-size: 0.82em;
+            margin-top: 16px; padding-top: 12px; border-top: 1px solid #444;
+            text-align: center; color: #888; font-size: 0.82em;
             max-width: 1140px; margin-left: auto; margin-right: auto;
         }
         .footer-bottom a { color: #9b8fd4; text-decoration: none; }
         .footer-bottom a:hover { text-decoration: underline; }
-
         @media (max-width: 1100px) {
             .content { grid-template-columns: 1fr 1fr; }
             .result-panel { grid-column: 1 / -1; }
@@ -355,7 +264,6 @@
 
 <div id="app">
 <div class="container">
-
     <div class="header">
         <button class="lang-switch" onclick="changeLang()" id="langSwitchBtn">🌐 English</button>
         <h1>🧬 <span data-key="appTitle"></span></h1>
@@ -364,56 +272,45 @@
     </div>
 
     <div class="content">
-
         <!-- Sütun 1 -->
         <div class="panel">
             <h2 data-key="colPatient"></h2>
-
-            <div class="form-group">
-                <label data-key="lbl_i1"></label>
+            <div class="form-group"><label data-key="lbl_i1"></label>
                 <select id="i1">
-                    <option value="0"       data-key="i1_0"></option>
+                    <option value="0" data-key="i1_0"></option>
                     <option value="i1_cat2" data-key="i1_cat2"></option>
                     <option value="i1_cat3" data-key="i1_cat3"></option>
                     <option value="i1_cat4" data-key="i1_cat4"></option>
                     <option value="i1_cat5" data-key="i1_cat5"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i2"></label>
+            <div class="form-group"><label data-key="lbl_i2"></label>
                 <select id="i2">
-                    <option value="0"       data-key="i2_0"></option>
+                    <option value="0" data-key="i2_0"></option>
                     <option value="i2_cat2" data-key="i2_cat2" disabled></option>
                     <option value="i2_cat3" data-key="i2_cat3"></option>
                     <option value="i2_cat4" data-key="i2_cat4"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i3"></label>
+            <div class="form-group"><label data-key="lbl_i3"></label>
                 <select id="i3">
-                    <option value="0"       data-key="i3_0"></option>
+                    <option value="0" data-key="i3_0"></option>
                     <option value="i3_cat1" data-key="i3_cat1"></option>
                     <option value="i3_cat3" data-key="i3_cat3"></option>
                     <option value="i3_cat4" data-key="i3_cat4"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i4"></label>
+            <div class="form-group"><label data-key="lbl_i4"></label>
                 <select id="i4">
-                    <option value="0"       data-key="i4_0"></option>
+                    <option value="0" data-key="i4_0"></option>
                     <option value="i4_cat1" data-key="i4_cat1"></option>
                     <option value="i4_cat2" data-key="i4_cat2" disabled></option>
                     <option value="i4_cat4" data-key="i4_cat4"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i5"></label>
+            <div class="form-group"><label data-key="lbl_i5"></label>
                 <select id="i5">
-                    <option value="0"       data-key="i5_0"></option>
+                    <option value="0" data-key="i5_0"></option>
                     <option value="i5_cat1" data-key="i5_cat1"></option>
                     <option value="i5_cat2" data-key="i5_cat2" disabled></option>
                     <option value="i5_cat3" data-key="i5_cat3"></option>
@@ -421,38 +318,30 @@
                     <option value="i5_cat6" data-key="i5_cat6" disabled></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i6"></label>
+            <div class="form-group"><label data-key="lbl_i6"></label>
                 <select id="i6">
-                    <option value="0"       data-key="i6_0"></option>
+                    <option value="0" data-key="i6_0"></option>
                     <option value="i6_cat1" data-key="i6_cat1"></option>
                     <option value="i6_cat2" data-key="i6_cat2"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i7"></label>
+            <div class="form-group"><label data-key="lbl_i7"></label>
                 <select id="i7">
-                    <option value="0"       data-key="i7_0"></option>
+                    <option value="0" data-key="i7_0"></option>
                     <option value="i7_cat1" data-key="i7_cat1"></option>
                     <option value="i7_cat2" data-key="i7_cat2"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i8"></label>
+            <div class="form-group"><label data-key="lbl_i8"></label>
                 <select id="i8">
-                    <option value="0"       data-key="i8_0"></option>
+                    <option value="0" data-key="i8_0"></option>
                     <option value="i8_cat1" data-key="i8_cat1"></option>
                     <option value="i8_cat2" data-key="i8_cat2"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i10"></label>
+            <div class="form-group"><label data-key="lbl_i10"></label>
                 <select id="i10">
-                    <option value="0"        data-key="i10_0"></option>
+                    <option value="0" data-key="i10_0"></option>
                     <option value="i10_cat1" data-key="i10_cat1"></option>
                     <option value="i10_cat3" data-key="i10_cat3"></option>
                 </select>
@@ -462,38 +351,30 @@
         <!-- Sütun 2 -->
         <div class="panel">
             <h2 style="visibility:hidden;">&nbsp;</h2>
-
-            <div class="form-group">
-                <label data-key="lbl_i12"></label>
+            <div class="form-group"><label data-key="lbl_i12"></label>
                 <select id="i12">
-                    <option value="0"        data-key="i12_0"></option>
+                    <option value="0" data-key="i12_0"></option>
                     <option value="i12_cat2" data-key="i12_cat2"></option>
                     <option value="i12_cat3" data-key="i12_cat3"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i13"></label>
+            <div class="form-group"><label data-key="lbl_i13"></label>
                 <select id="i13">
-                    <option value="0"        data-key="i13_0"></option>
+                    <option value="0" data-key="i13_0"></option>
                     <option value="i13_cat2" data-key="i13_cat2"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i14"></label>
+            <div class="form-group"><label data-key="lbl_i14"></label>
                 <select id="i14">
-                    <option value="0"        data-key="i14_0"></option>
+                    <option value="0" data-key="i14_0"></option>
                     <option value="i14_cat1" data-key="i14_cat1" disabled></option>
                     <option value="i14_cat3" data-key="i14_cat3"></option>
                     <option value="i14_cat4" data-key="i14_cat4"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i15"></label>
+            <div class="form-group"><label data-key="lbl_i15"></label>
                 <select id="i15">
-                    <option value="0"        data-key="i15_0"></option>
+                    <option value="0" data-key="i15_0"></option>
                     <option value="i15_cat1" data-key="i15_cat1"></option>
                     <option value="i15_cat2" data-key="i15_cat2"></option>
                     <option value="i15_cat3" data-key="i15_cat3"></option>
@@ -503,40 +384,32 @@
                     <option value="i15_cat8" data-key="i15_cat8"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i53"></label>
+            <div class="form-group"><label data-key="lbl_i53"></label>
                 <select id="i53">
-                    <option value="0"        data-key="i53_0"></option>
+                    <option value="0" data-key="i53_0"></option>
                     <option value="i53_cat2" data-key="i53_cat2"></option>
                     <option value="i53_cat3" data-key="i53_cat3"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i54"></label>
+            <div class="form-group"><label data-key="lbl_i54"></label>
                 <select id="i54">
-                    <option value="0"        data-key="i54_0"></option>
+                    <option value="0" data-key="i54_0"></option>
                     <option value="i54_cat1" data-key="i54_cat1"></option>
                     <option value="i54_cat2" data-key="i54_cat2"></option>
                     <option value="i54_cat4" data-key="i54_cat4"></option>
                     <option value="i54_cat5" data-key="i54_cat5"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i55"></label>
+            <div class="form-group"><label data-key="lbl_i55"></label>
                 <select id="i55">
-                    <option value="0"        data-key="i55_0"></option>
+                    <option value="0" data-key="i55_0"></option>
                     <option value="i55_cat1" data-key="i55_cat1"></option>
                     <option value="i55_cat2" data-key="i55_cat2"></option>
                 </select>
             </div>
-
-            <div class="form-group">
-                <label data-key="lbl_i56"></label>
+            <div class="form-group"><label data-key="lbl_i56"></label>
                 <select id="i56">
-                    <option value="0"        data-key="i56_0"></option>
+                    <option value="0" data-key="i56_0"></option>
                     <option value="i56_cat1" data-key="i56_cat1"></option>
                     <option value="i56_cat2" data-key="i56_cat2"></option>
                     <option value="i56_cat3" data-key="i56_cat3"></option>
@@ -545,7 +418,6 @@
                     <option value="i56_cat7" data-key="i56_cat7"></option>
                 </select>
             </div>
-
             <button class="high-pcr-button" onclick="selectHighPCRCombination()">
                 🎯 <span data-key="btnHighPCR"></span>
             </button>
@@ -556,14 +428,11 @@
             <h2 data-key="colResults"></h2>
             <div class="pcr-label" data-key="pcrLabel"></div>
             <div class="pcr-value" id="pcrValue">0.00%</div>
-
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill" style="width:0%"></div>
                 <div class="threshold-line" style="left:27.7%"></div>
             </div>
-
             <div id="classification" class="classification pcr-negative" style="display:none;"></div>
-
             <div class="performance-box">
                 <h4>📈 <span data-key="perfTitle"></span></h4>
                 <div class="perf-grid">
@@ -575,10 +444,8 @@
                     <div class="perf-item"><span data-key="perfMethod"></span><span>Youden's J</span></div>
                 </div>
             </div>
-
             <div class="info-box" data-key="infoBox"></div>
-
-            <div class="details-toggle" onclick="toggleDetails()" id="detailsToggleBtn" data-key="detailsToggle"></div>
+            <div class="details-toggle" onclick="toggleDetails()" data-key="detailsToggle"></div>
             <div class="details-content" id="detailsContent">
                 <div id="calculationDetails"></div>
             </div>
@@ -623,20 +490,19 @@
             <a href="#" data-key="footTerms"></a>
         </div>
     </div>
-
 </div>
 </div>
 
 <script>
 const TRANSLATIONS = {
     tr: {
-        appTitle:    "pCR Olasılığı Hesaplayıcı",
-        appSubtitle: "Neoadjuvan Kemoterapi Sonrası Patolojik Tam Yanıt Tahmini",
-        appModel:    "Model 1 — L2 Regularization | Optimal Eşik: %27.7",
-        langSwitchBtn: "🌐 English",
-        modalTitle:   "⚠️ Önemli Uyarı — Lütfen Okuyunuz",
-        modalIntro:   "Bu araç, meme kanseri hastalarında neoadjuvan kemoterapi sonrası patolojik tam yanıt (pCR) olasılığını tahmin etmek amacıyla geliştirilmiş bir akademik araştırma aracıdır.",
-        modalItems: [
+        appTitle:"pCR Olasılığı Hesaplayıcı",
+        appSubtitle:"Neoadjuvan Kemoterapi Sonrası Patolojik Tam Yanıt Tahmini",
+        appModel:"Model 1 — L2 Regularization | Optimal Eşik: %27.7",
+        langSwitchBtn:"🌐 English",
+        modalTitle:"⚠️ Önemli Uyarı — Lütfen Okuyunuz",
+        modalIntro:"Bu araç, meme kanseri hastalarında neoadjuvan kemoterapi sonrası patolojik tam yanıt (pCR) olasılığını tahmin etmek amacıyla geliştirilmiş bir akademik araştırma aracıdır.",
+        modalItems:[
             "Bu araç <strong>yalnızca araştırma ve eğitim amaçlıdır</strong>; klinik karar verme sürecinin yerini alamaz.",
             "Sunulan tahminler, <strong>uzman hekim değerlendirmesinin, güncel kılavuzların ve hastaya özgü faktörlerin</strong> yerine kullanılamaz.",
             "Model, <strong>tek merkezli retrospektif</strong> verilerle geliştirilmiştir; prospektif çok merkezli doğrulama çalışmaları devam etmektedir.",
@@ -644,86 +510,62 @@ const TRANSLATIONS = {
             "Araç, <strong>KVKK ve GDPR</strong> kapsamında hasta verisi toplamamaktadır; tüm hesaplamalar tarayıcınızda gerçekleşir.",
             "Yazarlar, bu aracın klinik kullanımından doğabilecek sonuçlar için <strong>sorumluluk kabul etmemektedir</strong>."
         ],
-        modalHighlight: "⚕️ Bu araçtan elde edilen sonuçlar hiçbir koşulda tek başına klinik karar için kullanılmamalıdır. Her zaman multidisipliner onkoloji ekibinin değerlendirmesi esas alınmalıdır.",
-        agreeLabel:   "Yukarıdaki uyarıları okudum, anladım ve bu aracın yalnızca araştırma amaçlı olduğunu kabul ediyorum.",
-        acceptBtnText: "✅ Anladım, Devam Et",
-        colPatient: "📋 Hasta Bilgileri",
-        colResults: "📊 Sonuçlar",
-        lbl_i1:  "Histolojik Tip",
-        lbl_i2:  "ER Durumu",
-        lbl_i3:  "PR Durumu",
-        lbl_i4:  "HER2 Durumu",
-        lbl_i5:  "Moleküler Tip",
-        lbl_i6:  "Ki-67 İndeksi",
-        lbl_i7:  "Tübül Derecesi",
-        lbl_i8:  "Nükleer Derece",
-        lbl_i10: "Histolojik Grade",
-        lbl_i12: "TIL Seviyesi",
-        lbl_i13: "Metastaz Durumu",
-        lbl_i14: "Metastaz Yeri",
-        lbl_i15: "Tanı Evresi",
-        lbl_i53: "Kitle Şekli",
-        lbl_i54: "Kitle Konturu",
-        lbl_i55: "Kitle Dansitesi",
-        lbl_i56: "Kalsifikasyon Morfolojisi",
-        i1_0: "İnvaziv Duktal Karsinom (Referans)", i1_cat2: "İnvaziv Lobüler Karsinom (β=−0.1333)", i1_cat3: "Mikst (Duktal+Lobüler) (β=−0.0712)", i1_cat4: "DCIS (β=+0.0205)", i1_cat5: "Diğer Nadir Tipler (β=+0.0374)",
-        i2_0: "Güçlü Pozitif (Referans)", i2_cat2: "Negatif (Modelden çıkarılmış)", i2_cat3: "Pozitif (β=−0.0017)", i2_cat4: "Zayıf Pozitif (β=+0.1161)",
-        i3_0: "Negatif (Referans)", i3_cat1: "Güçlü Pozitif (β=−0.2422)", i3_cat3: "Pozitif (β=+0.0002)", i3_cat4: "Zayıf Pozitif (β=−0.2703)",
-        i4_0: "Negatif (Referans)", i4_cat1: "Ekvokal (β=+0.0140)", i4_cat2: "HER2-düşük (Modelden çıkarılmış)", i4_cat4: "Pozitif (β=+0.3553)",
-        i5_0: "Luminal B HER2(-) (Referans)", i5_cat1: "HER2-Düşük (β=−0.1124)", i5_cat2: "HER2-Zengin (Modelden çıkarılmış)", i5_cat3: "Luminal A (β=−0.2576)", i5_cat5: "Luminal B HER2(+) (β=+0.1765)", i5_cat6: "Triple Negatif (Modelden çıkarılmış)",
-        i6_0: "Yüksek (Referans)", i6_cat1: "Düşük (β=−0.3223)", i6_cat2: "Orta (β=−0.0286)",
-        i7_0: "3 (Referans)", i7_cat1: "1 (β=−0.0133)", i7_cat2: "2 (β=−0.0801)",
-        i8_0: "3 (Referans)", i8_cat1: "1 (β=−0.0194)", i8_cat2: "2 (β=−0.1339)",
-        i10_0: "G2 (Referans)", i10_cat1: "G1 (β=−0.0752)", i10_cat3: "G3 (β=+0.2144)",
-        i12_0: "<%10 (Referans)", i12_cat2: "%10–%50 (β=+0.0787)", i12_cat3: ">%50 (β=+0.1417)",
-        i13_0: "Var (Referans)", i13_cat2: "Yok (β=+0.5690)",
-        i14_0: "Lenf Nodu (Referans)", i14_cat1: "Yok (Modelden çıkarılmış)", i14_cat3: "Dermal Lenfatik (β=−0.0155)", i14_cat4: "Uzak Metastaz (β=−0.0469)",
-        i15_0: "Evre IIB (Referans)", i15_cat1: "Evre IA (β=−0.0821)", i15_cat2: "Evre IB (β=+0.0629)", i15_cat3: "Evre IIA (β=+0.2254)", i15_cat5: "Evre IIIA (β=−0.1307)", i15_cat6: "Evre IIIB (β=−0.0510)", i15_cat7: "Evre IIIC (β=+0.0687)", i15_cat8: "Evre IV (β=−0.0064)",
-        i53_0: "Düzensiz (Referans)", i53_cat2: "Oval (β=−0.1467)", i53_cat3: "Yuvarlak (β=+0.0834)",
-        i54_0: "Düzgün (Referans)", i54_cat1: "Belirsiz (β=+0.0190)", i54_cat2: "Düzensiz (β=+0.0397)", i54_cat4: "Mikrolobüle (β=+0.0911)", i54_cat5: "Spiküle (β=−0.1043)",
-        i55_0: "Yüksek Dansite (Referans)", i55_cat1: "Düşük Dansite (β=−0.0099)", i55_cat2: "Eş Dansite (β=+0.2683)",
-        i56_0: "Kalsifikasyon Yok (Referans)", i56_cat1: "Amorf (β=−0.0140)", i56_cat2: "Coarse/Popcorn (β=−0.0136)", i56_cat3: "İnce Lineer (β=+0.0858)", i56_cat5: "Kesin Benign (β=−0.0340)", i56_cat6: "Pleomorfik (β=−0.2308)", i56_cat7: "Yuvarlak/Punctate (β=+0.0759)",
-        btnHighPCR:   "Yüksek pCR Kombinasyonu Seç",
-        pcrLabel:     "pCR Olasılığı",
-        pcrPositive:  "✅ pCR Pozitif",
-        pcrNegative:  "❌ pCR Negatif",
-        perfTitle:  "Model Performans Özeti",
-        perfSens:   "Sensitivite",
-        perfSpec:   "Spesifisite",
-        perfThresh: "Optimal Eşik",
-        perfModel:  "Model",
-        perfMethod: "Eşik Yöntemi",
-        infoBox: "<strong>ℹ️ Bilgi:</strong> Bu model, neoadjuvan kemoterapi sonrası pCR olasılığını tahmin eder. Optimal eşik (%27.7) Youden's J indeksi ile belirlenmiştir.",
-        detailsToggle: "📋 Hesaplama Detayları",
-        detailsBeta0: "β₀ (Sabit)",
-        detailsCoefs: "Eklenen Katsayılar",
-        detailsNone:  "Hiçbiri (tümü referans kategori)",
-        detailsLogit: "Toplam Logit",
-        detailsProb:  "pCR Olasılığı",
-        bannerText: "<strong>Önemli Uyarı — Yalnızca Araştırma Amaçlıdır:</strong> Bu araç akademik araştırma ve eğitim amaçlı geliştirilmiştir. Sunulan tahminler <strong>klinik karar yerine geçmez</strong>; tanı, tedavi planlaması veya hasta yönetiminde tek başına kullanılamaz.",
-        footCiteTitle:   "Atıf / Citation",
-        footCiteDesc:    "Bu aracı akademik çalışmalarınızda kullanıyorsanız lütfen aşağıdaki şekilde atıf yapınız:",
-        footCiteRef:     "[Yazar(lar)]. A Logistic Regression-Based pCR Prediction Tool for Breast Cancer. JMIR Cancer. [Yıl];[Cilt]:e[No]. doi:[DOI]",
-        footCiteNote:    "⏳ Makale yayın sürecindedir. Bilgiler yayımlanma sonrası güncellenecektir.",
-        footModelTitle:  "Model Bilgileri",
-        footModelItems:  ["Algoritma: L2-Regularized Logistic Regression","Değişken sayısı: 17 klinik/patolojik/radyolojik","Eğitim seti: Tek merkez, retrospektif kohort","Eşik optimizasyonu: Youden's J indeksi","Raporlama standardı: TRIPOD-AI","Platform: Web (client-side) + Masaüstü (.exe)"],
-        footLicTitle:    "Lisans ve Kullanım",
-        footLicItems:    ["Akademik ve eğitim amaçlı kullanım serbesttir","Ticari kullanım için yazarlarla iletişime geçiniz","Kaynak göstermeden paylaşım yapılamaz","Klinik kullanım için kurumsal onay gereklidir"],
-        footContactTitle: "İletişim",
-        footContactDesc:  "Sorularınız veya iş birliği talepleriniz için:",
-        footDisclaimer:  "Bu araç yalnızca araştırma amaçlıdır",
-        footPrivacy:     "Gizlilik Politikası",
-        footTerms:       "Kullanım Koşulları",
+        modalHighlight:"⚕️ Bu araçtan elde edilen sonuçlar hiçbir koşulda tek başına klinik karar için kullanılmamalıdır. Her zaman multidisipliner onkoloji ekibinin değerlendirmesi esas alınmalıdır.",
+        agreeLabel:"Yukarıdaki uyarıları okudum, anladım ve bu aracın yalnızca araştırma amaçlı olduğunu kabul ediyorum.",
+        acceptBtnText:"✅ Anladım, Devam Et",
+        colPatient:"📋 Hasta Bilgileri", colResults:"📊 Sonuçlar",
+        lbl_i1:"Histolojik Tip", lbl_i2:"ER Durumu", lbl_i3:"PR Durumu",
+        lbl_i4:"HER2 Durumu", lbl_i5:"Moleküler Tip", lbl_i6:"Ki-67 İndeksi",
+        lbl_i7:"Tübül Derecesi", lbl_i8:"Nükleer Derece", lbl_i10:"Histolojik Grade",
+        lbl_i12:"TIL Seviyesi", lbl_i13:"Metastaz Durumu", lbl_i14:"Metastaz Yeri",
+        lbl_i15:"Tanı Evresi", lbl_i53:"Kitle Şekli", lbl_i54:"Kitle Konturu",
+        lbl_i55:"Kitle Dansitesi", lbl_i56:"Kalsifikasyon Morfolojisi",
+        i1_0:"İnvaziv Duktal Karsinom (Referans)", i1_cat2:"İnvaziv Lobüler Karsinom (β=−0.1333)", i1_cat3:"Mikst (Duktal+Lobüler) (β=−0.0712)", i1_cat4:"DCIS (β=+0.0205)", i1_cat5:"Diğer Nadir Tipler (β=+0.0374)",
+        i2_0:"Güçlü Pozitif (Referans)", i2_cat2:"Negatif (Modelden çıkarılmış)", i2_cat3:"Pozitif (β=−0.0017)", i2_cat4:"Zayıf Pozitif (β=+0.1161)",
+        i3_0:"Negatif (Referans)", i3_cat1:"Güçlü Pozitif (β=−0.2422)", i3_cat3:"Pozitif (β=+0.0002)", i3_cat4:"Zayıf Pozitif (β=−0.2703)",
+        i4_0:"Negatif (Referans)", i4_cat1:"Ekvokal (β=+0.0140)", i4_cat2:"HER2-düşük (Modelden çıkarılmış)", i4_cat4:"Pozitif (β=+0.3553)",
+        i5_0:"Luminal B HER2(-) (Referans)", i5_cat1:"HER2-Düşük (β=−0.1124)", i5_cat2:"HER2-Zengin (Modelden çıkarılmış)", i5_cat3:"Luminal A (β=−0.2576)", i5_cat5:"Luminal B HER2(+) (β=+0.1765)", i5_cat6:"Triple Negatif (Modelden çıkarılmış)",
+        i6_0:"Yüksek (Referans)", i6_cat1:"Düşük (β=−0.3223)", i6_cat2:"Orta (β=−0.0286)",
+        i7_0:"3 (Referans)", i7_cat1:"1 (β=−0.0133)", i7_cat2:"2 (β=−0.0801)",
+        i8_0:"3 (Referans)", i8_cat1:"1 (β=−0.0194)", i8_cat2:"2 (β=−0.1339)",
+        i10_0:"G2 (Referans)", i10_cat1:"G1 (β=−0.0752)", i10_cat3:"G3 (β=+0.2144)",
+        i12_0:"<%10 (Referans)", i12_cat2:"%10–%50 (β=+0.0787)", i12_cat3:">%50 (β=+0.1417)",
+        i13_0:"Var (Referans)", i13_cat2:"Yok (β=+0.5690)",
+        i14_0:"Lenf Nodu (Referans)", i14_cat1:"Yok (Modelden çıkarılmış)", i14_cat3:"Dermal Lenfatik (β=−0.0155)", i14_cat4:"Uzak Metastaz (β=−0.0469)",
+        i15_0:"Evre IIB (Referans)", i15_cat1:"Evre IA (β=−0.0821)", i15_cat2:"Evre IB (β=+0.0629)", i15_cat3:"Evre IIA (β=+0.2254)", i15_cat5:"Evre IIIA (β=−0.1307)", i15_cat6:"Evre IIIB (β=−0.0510)", i15_cat7:"Evre IIIC (β=+0.0687)", i15_cat8:"Evre IV (β=−0.0064)",
+        i53_0:"Düzensiz (Referans)", i53_cat2:"Oval (β=−0.1467)", i53_cat3:"Yuvarlak (β=+0.0834)",
+        i54_0:"Düzgün (Referans)", i54_cat1:"Belirsiz (β=+0.0190)", i54_cat2:"Düzensiz (β=+0.0397)", i54_cat4:"Mikrolobüle (β=+0.0911)", i54_cat5:"Spiküle (β=−0.1043)",
+        i55_0:"Yüksek Dansite (Referans)", i55_cat1:"Düşük Dansite (β=−0.0099)", i55_cat2:"Eş Dansite (β=+0.2683)",
+        i56_0:"Kalsifikasyon Yok (Referans)", i56_cat1:"Amorf (β=−0.0140)", i56_cat2:"Coarse/Popcorn (β=−0.0136)", i56_cat3:"İnce Lineer (β=+0.0858)", i56_cat5:"Kesin Benign (β=−0.0340)", i56_cat6:"Pleomorfik (β=−0.2308)", i56_cat7:"Yuvarlak/Punctate (β=+0.0759)",
+        btnHighPCR:"Yüksek pCR Kombinasyonu Seç", pcrLabel:"pCR Olasılığı",
+        pcrPositive:"✅ pCR Pozitif", pcrNegative:"❌ pCR Negatif",
+        perfTitle:"Model Performans Özeti", perfSens:"Sensitivite", perfSpec:"Spesifisite",
+        perfThresh:"Optimal Eşik", perfModel:"Model", perfMethod:"Eşik Yöntemi",
+        infoBox:"<strong>ℹ️ Bilgi:</strong> Bu model, neoadjuvan kemoterapi sonrası pCR olasılığını tahmin eder. Optimal eşik (%27.7) Youden's J indeksi ile belirlenmiştir.",
+        detailsToggle:"📋 Hesaplama Detayları",
+        detailsBeta0:"β₀ (Sabit)", detailsCoefs:"Eklenen Katsayılar",
+        detailsNone:"Hiçbiri (tümü referans kategori)", detailsLogit:"Toplam Logit", detailsProb:"pCR Olasılığı",
+        bannerText:"<strong>Önemli Uyarı — Yalnızca Araştırma Amaçlıdır:</strong> Bu araç akademik araştırma ve eğitim amaçlı geliştirilmiştir. Sunulan tahminler <strong>klinik karar yerine geçmez</strong>; tanı, tedavi planlaması veya hasta yönetiminde tek başına kullanılamaz.",
+        footCiteTitle:"Atıf / Citation",
+        footCiteDesc:"Bu aracı akademik çalışmalarınızda kullanıyorsanız lütfen aşağıdaki şekilde atıf yapınız:",
+        footCiteRef:"[Yazar(lar)]. A Logistic Regression-Based pCR Prediction Tool for Breast Cancer. JMIR Cancer. [Yıl];[Cilt]:e[No]. doi:[DOI]",
+        footCiteNote:"⏳ Makale yayın sürecindedir. Bilgiler yayımlanma sonrası güncellenecektir.",
+        footModelTitle:"Model Bilgileri",
+        footModelItems:["Algoritma: L2-Regularized Logistic Regression","Değişken sayısı: 17 klinik/patolojik/radyolojik","Eğitim seti: Tek merkez, retrospektif kohort","Eşik optimizasyonu: Youden's J indeksi","Raporlama standardı: TRIPOD-AI","Platform: Web (client-side) + Masaüstü (.exe)"],
+        footLicTitle:"Lisans ve Kullanım",
+        footLicItems:["Akademik ve eğitim amaçlı kullanım serbesttir","Ticari kullanım için yazarlarla iletişime geçiniz","Kaynak göstermeden paylaşım yapılamaz","Klinik kullanım için kurumsal onay gereklidir"],
+        footContactTitle:"İletişim", footContactDesc:"Sorularınız veya iş birliği talepleriniz için:",
+        footDisclaimer:"Bu araç yalnızca araştırma amaçlıdır",
+        footPrivacy:"Gizlilik Politikası", footTerms:"Kullanım Koşulları"
     },
-
     en: {
-        appTitle:    "pCR Probability Calculator",
-        appSubtitle: "Prediction of Pathological Complete Response After Neoadjuvant Chemotherapy",
-        appModel:    "Model 1 — L2 Regularization | Optimal Threshold: 27.7%",
-        langSwitchBtn: "🌐 Türkçe",
-        modalTitle:   "⚠️ Important Warning — Please Read Carefully",
-        modalIntro:   "This tool is an academic research instrument developed to estimate the probability of pathological complete response (pCR) after neoadjuvant chemotherapy in breast cancer patients.",
-        modalItems: [
+        appTitle:"pCR Probability Calculator",
+        appSubtitle:"Prediction of Pathological Complete Response After Neoadjuvant Chemotherapy",
+        appModel:"Model 1 — L2 Regularization | Optimal Threshold: 27.7%",
+        langSwitchBtn:"🌐 Türkçe",
+        modalTitle:"⚠️ Important Warning — Please Read Carefully",
+        modalIntro:"This tool is an academic research instrument developed to estimate the probability of pathological complete response (pCR) after neoadjuvant chemotherapy in breast cancer patients.",
+        modalItems:[
             "This tool is intended <strong>for research and educational purposes only</strong> and cannot replace clinical decision-making.",
             "The predictions provided cannot substitute <strong>expert physician evaluation, current clinical guidelines, or patient-specific factors</strong>.",
             "The model was developed using <strong>single-center retrospective</strong> data; prospective multicenter validation studies are ongoing.",
@@ -731,76 +573,53 @@ const TRANSLATIONS = {
             "This tool does <strong>not collect patient data</strong> under GDPR/KVKK; all calculations are performed locally in your browser.",
             "The authors <strong>accept no responsibility</strong> for consequences arising from clinical use of this tool."
         ],
-        modalHighlight: "⚕️ Results obtained from this tool must never be used alone for clinical decision-making under any circumstances. Multidisciplinary oncology team evaluation must always be the primary basis for clinical decisions.",
-        agreeLabel:   "I have read and understood the above warnings and acknowledge that this tool is for research purposes only.",
-        acceptBtnText: "✅ I Understand, Continue",
-        colPatient: "📋 Patient Information",
-        colResults: "📊 Results",
-        lbl_i1:  "Histological Type",
-        lbl_i2:  "ER Status",
-        lbl_i3:  "PR Status",
-        lbl_i4:  "HER2 Status",
-        lbl_i5:  "Molecular Subtype",
-        lbl_i6:  "Ki-67 Index",
-        lbl_i7:  "Tubule Formation",
-        lbl_i8:  "Nuclear Grade",
-        lbl_i10: "Histological Grade",
-        lbl_i12: "TIL Level",
-        lbl_i13: "Metastasis Status",
-        lbl_i14: "Metastasis Site",
-        lbl_i15: "Clinical Stage",
-        lbl_i53: "Mass Shape",
-        lbl_i54: "Mass Margin",
-        lbl_i55: "Mass Density",
-        lbl_i56: "Calcification Morphology",
-        i1_0: "Invasive Ductal Carcinoma (Reference)", i1_cat2: "Invasive Lobular Carcinoma (β=−0.1333)", i1_cat3: "Mixed (Ductal+Lobular) (β=−0.0712)", i1_cat4: "DCIS (β=+0.0205)", i1_cat5: "Other Rare Types (β=+0.0374)",
-        i2_0: "Strongly Positive (Reference)", i2_cat2: "Negative (Excluded from model)", i2_cat3: "Positive (β=−0.0017)", i2_cat4: "Weakly Positive (β=+0.1161)",
-        i3_0: "Negative (Reference)", i3_cat1: "Strongly Positive (β=−0.2422)", i3_cat3: "Positive (β=+0.0002)", i3_cat4: "Weakly Positive (β=−0.2703)",
-        i4_0: "Negative (Reference)", i4_cat1: "Equivocal (β=+0.0140)", i4_cat2: "HER2-low (Excluded from model)", i4_cat4: "Positive (β=+0.3553)",
-        i5_0: "Luminal B HER2(-) (Reference)", i5_cat1: "HER2-Low (β=−0.1124)", i5_cat2: "HER2-Enriched (Excluded from model)", i5_cat3: "Luminal A (β=−0.2576)", i5_cat5: "Luminal B HER2(+) (β=+0.1765)", i5_cat6: "Triple Negative (Excluded from model)",
-        i6_0: "High (Reference)", i6_cat1: "Low (β=−0.3223)", i6_cat2: "Intermediate (β=−0.0286)",
-        i7_0: "3 (Reference)", i7_cat1: "1 (β=−0.0133)", i7_cat2: "2 (β=−0.0801)",
-        i8_0: "3 (Reference)", i8_cat1: "1 (β=−0.0194)", i8_cat2: "2 (β=−0.1339)",
-        i10_0: "G2 (Reference)", i10_cat1: "G1 (β=−0.0752)", i10_cat3: "G3 (β=+0.2144)",
-        i12_0: "<10% (Reference)", i12_cat2: "10–50% (β=+0.0787)", i12_cat3: ">50% (β=+0.1417)",
-        i13_0: "Present (Reference)", i13_cat2: "Absent (β=+0.5690)",
-        i14_0: "Lymph Node (Reference)", i14_cat1: "None (Excluded from model)", i14_cat3: "Dermal Lymphatic (β=−0.0155)", i14_cat4: "Distant Metastasis (β=−0.0469)",
-        i15_0: "Stage IIB (Reference)", i15_cat1: "Stage IA (β=−0.0821)", i15_cat2: "Stage IB (β=+0.0629)", i15_cat3: "Stage IIA (β=+0.2254)", i15_cat5: "Stage IIIA (β=−0.1307)", i15_cat6: "Stage IIIB (β=−0.0510)", i15_cat7: "Stage IIIC (β=+0.0687)", i15_cat8: "Stage IV (β=−0.0064)",
-        i53_0: "Irregular (Reference)", i53_cat2: "Oval (β=−0.1467)", i53_cat3: "Round (β=+0.0834)",
-        i54_0: "Circumscribed (Reference)", i54_cat1: "Indistinct (β=+0.0190)", i54_cat2: "Irregular (β=+0.0397)", i54_cat4: "Microlobulated (β=+0.0911)", i54_cat5: "Spiculated (β=−0.1043)",
-        i55_0: "High Density (Reference)", i55_cat1: "Low Density (β=−0.0099)", i55_cat2: "Equal Density (β=+0.2683)",
-        i56_0: "No Calcification (Reference)", i56_cat1: "Amorphous (β=−0.0140)", i56_cat2: "Coarse/Popcorn (β=−0.0136)", i56_cat3: "Fine Linear (β=+0.0858)", i56_cat5: "Definitely Benign (β=−0.0340)", i56_cat6: "Pleomorphic (β=−0.2308)", i56_cat7: "Round/Punctate (β=+0.0759)",
-        btnHighPCR:   "Select High pCR Combination",
-        pcrLabel:     "pCR Probability",
-        pcrPositive:  "✅ pCR Positive",
-        pcrNegative:  "❌ pCR Negative",
-        perfTitle:  "Model Performance Summary",
-        perfSens:   "Sensitivity",
-        perfSpec:   "Specificity",
-        perfThresh: "Optimal Threshold",
-        perfModel:  "Model",
-        perfMethod: "Threshold Method",
-        infoBox: "<strong>ℹ️ Info:</strong> This model estimates pCR probability after neoadjuvant chemotherapy. The optimal threshold (27.7%) was determined using Youden's J index.",
-        detailsToggle: "📋 Calculation Details",
-        detailsBeta0: "β₀ (Intercept)",
-        detailsCoefs: "Added Coefficients",
-        detailsNone:  "None (all reference categories)",
-        detailsLogit: "Total Logit",
-        detailsProb:  "pCR Probability",
-        bannerText: "<strong>Important Warning — For Research Use Only:</strong> This tool was developed for academic research and educational purposes. The predictions provided <strong>do not replace clinical decisions</strong> and cannot be used alone for diagnosis, treatment planning, or patient management.",
-        footCiteTitle:   "Citation",
-        footCiteDesc:    "If you use this tool in academic work, please cite as follows:",
-        footCiteRef:     "[Author(s)]. A Logistic Regression-Based pCR Prediction Tool for Breast Cancer. JMIR Cancer. [Year];[Vol]:e[No]. doi:[DOI]",
-        footCiteNote:    "⏳ Manuscript under review. DOI and volume details will be updated upon publication.",
-        footModelTitle:  "Model Information",
-        footModelItems:  ["Algorithm: L2-Regularized Logistic Regression","Variables: 17 clinical/pathological/radiological","Training set: Single-center retrospective cohort","Threshold optimization: Youden's J index","Reporting standard: TRIPOD-AI","Platform: Web (client-side) + Desktop (.exe)"],
-        footLicTitle:    "License & Usage",
-        footLicItems:    ["Free for academic and educational use","Contact authors for commercial use","Redistribution without attribution is prohibited","Institutional approval required for clinical use"],
-        footContactTitle: "Contact",
-        footContactDesc:  "For questions, feedback, or collaboration:",
-        footDisclaimer:  "For research use only",
-        footPrivacy:     "Privacy Policy",
-        footTerms:       "Terms of Use",
+        modalHighlight:"⚕️ Results obtained from this tool must never be used alone for clinical decision-making under any circumstances. Multidisciplinary oncology team evaluation must always be the primary basis for clinical decisions.",
+        agreeLabel:"I have read and understood the above warnings and acknowledge that this tool is for research purposes only.",
+        acceptBtnText:"✅ I Understand, Continue",
+        colPatient:"📋 Patient Information", colResults:"📊 Results",
+        lbl_i1:"Histological Type", lbl_i2:"ER Status", lbl_i3:"PR Status",
+        lbl_i4:"HER2 Status", lbl_i5:"Molecular Subtype", lbl_i6:"Ki-67 Index",
+        lbl_i7:"Tubule Formation", lbl_i8:"Nuclear Grade", lbl_i10:"Histological Grade",
+        lbl_i12:"TIL Level", lbl_i13:"Metastasis Status", lbl_i14:"Metastasis Site",
+        lbl_i15:"Clinical Stage", lbl_i53:"Mass Shape", lbl_i54:"Mass Margin",
+        lbl_i55:"Mass Density", lbl_i56:"Calcification Morphology",
+        i1_0:"Invasive Ductal Carcinoma (Reference)", i1_cat2:"Invasive Lobular Carcinoma (β=−0.1333)", i1_cat3:"Mixed (Ductal+Lobular) (β=−0.0712)", i1_cat4:"DCIS (β=+0.0205)", i1_cat5:"Other Rare Types (β=+0.0374)",
+        i2_0:"Strongly Positive (Reference)", i2_cat2:"Negative (Excluded from model)", i2_cat3:"Positive (β=−0.0017)", i2_cat4:"Weakly Positive (β=+0.1161)",
+        i3_0:"Negative (Reference)", i3_cat1:"Strongly Positive (β=−0.2422)", i3_cat3:"Positive (β=+0.0002)", i3_cat4:"Weakly Positive (β=−0.2703)",
+        i4_0:"Negative (Reference)", i4_cat1:"Equivocal (β=+0.0140)", i4_cat2:"HER2-low (Excluded from model)", i4_cat4:"Positive (β=+0.3553)",
+        i5_0:"Luminal B HER2(-) (Reference)", i5_cat1:"HER2-Low (β=−0.1124)", i5_cat2:"HER2-Enriched (Excluded from model)", i5_cat3:"Luminal A (β=−0.2576)", i5_cat5:"Luminal B HER2(+) (β=+0.1765)", i5_cat6:"Triple Negative (Excluded from model)",
+        i6_0:"High (Reference)", i6_cat1:"Low (β=−0.3223)", i6_cat2:"Intermediate (β=−0.0286)",
+        i7_0:"3 (Reference)", i7_cat1:"1 (β=−0.0133)", i7_cat2:"2 (β=−0.0801)",
+        i8_0:"3 (Reference)", i8_cat1:"1 (β=−0.0194)", i8_cat2:"2 (β=−0.1339)",
+        i10_0:"G2 (Reference)", i10_cat1:"G1 (β=−0.0752)", i10_cat3:"G3 (β=+0.2144)",
+        i12_0:"<10% (Reference)", i12_cat2:"10–50% (β=+0.0787)", i12_cat3:">50% (β=+0.1417)",
+        i13_0:"Present (Reference)", i13_cat2:"Absent (β=+0.5690)",
+        i14_0:"Lymph Node (Reference)", i14_cat1:"None (Excluded from model)", i14_cat3:"Dermal Lymphatic (β=−0.0155)", i14_cat4:"Distant Metastasis (β=−0.0469)",
+        i15_0:"Stage IIB (Reference)", i15_cat1:"Stage IA (β=−0.0821)", i15_cat2:"Stage IB (β=+0.0629)", i15_cat3:"Stage IIA (β=+0.2254)", i15_cat5:"Stage IIIA (β=−0.1307)", i15_cat6:"Stage IIIB (β=−0.0510)", i15_cat7:"Stage IIIC (β=+0.0687)", i15_cat8:"Stage IV (β=−0.0064)",
+        i53_0:"Irregular (Reference)", i53_cat2:"Oval (β=−0.1467)", i53_cat3:"Round (β=+0.0834)",
+        i54_0:"Circumscribed (Reference)", i54_cat1:"Indistinct (β=+0.0190)", i54_cat2:"Irregular (β=+0.0397)", i54_cat4:"Microlobulated (β=+0.0911)", i54_cat5:"Spiculated (β=−0.1043)",
+        i55_0:"High Density (Reference)", i55_cat1:"Low Density (β=−0.0099)", i55_cat2:"Equal Density (β=+0.2683)",
+        i56_0:"No Calcification (Reference)", i56_cat1:"Amorphous (β=−0.0140)", i56_cat2:"Coarse/Popcorn (β=−0.0136)", i56_cat3:"Fine Linear (β=+0.0858)", i56_cat5:"Definitely Benign (β=−0.0340)", i56_cat6:"Pleomorphic (β=−0.2308)", i56_cat7:"Round/Punctate (β=+0.0759)",
+        btnHighPCR:"Select High pCR Combination", pcrLabel:"pCR Probability",
+        pcrPositive:"✅ pCR Positive", pcrNegative:"❌ pCR Negative",
+        perfTitle:"Model Performance Summary", perfSens:"Sensitivity", perfSpec:"Specificity",
+        perfThresh:"Optimal Threshold", perfModel:"Model", perfMethod:"Threshold Method",
+        infoBox:"<strong>ℹ️ Info:</strong> This model estimates pCR probability after neoadjuvant chemotherapy. The optimal threshold (27.7%) was determined using Youden's J index.",
+        detailsToggle:"📋 Calculation Details",
+        detailsBeta0:"β₀ (Intercept)", detailsCoefs:"Added Coefficients",
+        detailsNone:"None (all reference categories)", detailsLogit:"Total Logit", detailsProb:"pCR Probability",
+        bannerText:"<strong>Important Warning — For Research Use Only:</strong> This tool was developed for academic research and educational purposes. The predictions provided <strong>do not replace clinical decisions</strong> and cannot be used alone for diagnosis, treatment planning, or patient management.",
+        footCiteTitle:"Citation",
+        footCiteDesc:"If you use this tool in academic work, please cite as follows:",
+        footCiteRef:"[Author(s)]. A Logistic Regression-Based pCR Prediction Tool for Breast Cancer. JMIR Cancer. [Year];[Vol]:e[No]. doi:[DOI]",
+        footCiteNote:"⏳ Manuscript under review. DOI and volume details will be updated upon publication.",
+        footModelTitle:"Model Information",
+        footModelItems:["Algorithm: L2-Regularized Logistic Regression","Variables: 17 clinical/pathological/radiological","Training set: Single-center retrospective cohort","Threshold optimization: Youden's J index","Reporting standard: TRIPOD-AI","Platform: Web (client-side) + Desktop (.exe)"],
+        footLicTitle:"License & Usage",
+        footLicItems:["Free for academic and educational use","Contact authors for commercial use","Redistribution without attribution is prohibited","Institutional approval required for clinical use"],
+        footContactTitle:"Contact", footContactDesc:"For questions, feedback, or collaboration:",
+        footDisclaimer:"For research use only",
+        footPrivacy:"Privacy Policy", footTerms:"Terms of Use"
     }
 };
 
@@ -845,26 +664,63 @@ function changeLang() {
 function applyTranslations() {
     const T = TRANSLATIONS[currentLang];
     document.documentElement.lang = currentLang;
-
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (T[key] !== undefined) el.innerHTML = T[key];
     });
-
     document.querySelectorAll('select option[data-key]').forEach(opt => {
         const key = opt.getAttribute('data-key');
         if (T[key] !== undefined) opt.textContent = T[key];
     });
-
     document.getElementById('langSwitchBtn').textContent = T.langSwitchBtn;
-
     document.getElementById('footModelList').innerHTML = T.footModelItems.map(i => `<li>${i}</li>`).join('');
     document.getElementById('footLicList').innerHTML   = T.footLicItems.map(i => `<li>${i}</li>`).join('');
-
     document.querySelector('[data-key="footPrivacy"]').textContent = T.footPrivacy;
     document.querySelector('[data-key="footTerms"]').textContent   = T.footTerms;
 }
 
 function showDisclaimer() {
     const T = TRANSLATIONS[currentLang];
-    document.
+    document.getElementById('modalTitle').textContent    = T.modalTitle;
+    document.getElementById('modalIntro').textContent    = T.modalIntro;
+    document.getElementById('modalHighlight').innerHTML  = T.modalHighlight;
+    document.getElementById('agreeLabel').innerHTML      = T.agreeLabel;
+    document.getElementById('acceptBtnText').textContent = T.acceptBtnText;
+    document.getElementById('modalList').innerHTML = T.modalItems.map(i => `<li>${i}</li>`).join('');
+    document.getElementById('agreeCheck').checked = false;
+    document.getElementById('acceptBtn').disabled = true;
+    document.getElementById('acceptBtn').classList.remove('enabled');
+    document.getElementById('disclaimerModal').classList.add('active');
+}
+
+function toggleAccept() {
+    const checked = document.getElementById('agreeCheck').checked;
+    const btn = document.getElementById('acceptBtn');
+    btn.disabled = !checked;
+    checked ? btn.classList.add('enabled') : btn.classList.remove('enabled');
+}
+
+function acceptDisclaimer() {
+    if (!document.getElementById('agreeCheck').checked) return;
+    document.getElementById('disclaimerModal').classList.remove('active');
+    document.getElementById('app').classList.add('visible');
+    applyTranslations();
+    calculatePCR();
+}
+
+function calculatePCR() {
+    const T = TRANSLATIONS[currentLang];
+    let logit = BETA_0;
+    let details = [];
+    const ids = ['i1','i2','i3','i4','i5','i6','i7','i8','i10','i12','i13','i14','i15','i53','i54','i55','i56'];
+    ids.forEach(id => {
+        const val = document.getElementById(id).value;
+        if (val !== '0' && val !== '' && COEFFICIENTS[val] !== undefined) {
+            const coef = COEFFICIENTS[val];
+            logit += coef;
+            details.push(`${id}: ${val} = ${coef >= 0 ? '+' : ''}${coef.toFixed(6)}`);
+        }
+    });
+    const pcrProb = 1 / (1 + Math.exp(-logit));
+    document.getElementById('pcrValue').textContent     = `${(pcrProb * 100).toFixed(2)}%`;
+    document.getElementById('progressFill').style.width = `${Math.min(
