@@ -13,9 +13,6 @@
             min-height: 100vh;
         }
 
-        /* ══════════════════════════════════════════
-           DİL SEÇİM EKRANI
-        ══════════════════════════════════════════ */
         #langScreen {
             position: fixed; inset: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -48,9 +45,6 @@
         }
         .lang-btn .flag { font-size: 1.6em; display: block; margin-bottom: 4px; }
 
-        /* ══════════════════════════════════════════
-           UYARI MODALI
-        ══════════════════════════════════════════ */
         #disclaimerModal {
             position: fixed; inset: 0;
             background: rgba(0,0,0,0.65);
@@ -121,9 +115,6 @@
             box-shadow: 0 6px 18px rgba(102,126,234,0.4);
         }
 
-        /* ══════════════════════════════════════════
-           ANA UYGULAMA
-        ══════════════════════════════════════════ */
         #app { display: none; }
         #app.visible { display: block; }
 
@@ -143,7 +134,6 @@
         .header h1 { font-size: 2.1em; margin-bottom: 6px; }
         .header p  { font-size: 1em; opacity: 0.93; margin: 3px 0; }
 
-        /* Dil değiştir butonu (header içi) */
         .lang-switch {
             position: absolute; top: 16px; right: 20px;
             background: rgba(255,255,255,0.2);
@@ -256,18 +246,24 @@
         }
         .details-toggle {
             margin-top: 15px; padding: 8px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.2);
             border-radius: 6px; cursor: pointer;
             text-align: center; font-size: 0.85em;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: background 0.2s;
         }
+        .details-toggle:hover { background: rgba(255,255,255,0.3); }
+
+        /* ✅ DEĞİŞİKLİK 1: color: #fff ve word-break eklendi */
         .details-content {
             display: none; margin-top: 10px; padding: 12px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             border-radius: 6px; font-size: 0.8em; line-height: 1.6;
+            color: #fff;
+            word-break: break-word;
         }
         .details-content.show { display: block; }
 
-        /* Uyarı bandı */
         .disclaimer-banner {
             background: #fff8e1; border-top: 3px solid #f9a825;
             padding: 14px 30px; display: flex;
@@ -277,7 +273,6 @@
         .disclaimer-banner .disc-icon { font-size: 1.5em; flex-shrink: 0; margin-top: 1px; }
         .disclaimer-banner strong { color: #e65100; }
 
-        /* Footer */
         .footer {
             background: #2d2d3a; color: #ccc;
             padding: 22px 30px; font-size: 0.85em; line-height: 1.7;
@@ -319,9 +314,6 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     1. DİL SEÇİM EKRANI
-══════════════════════════════════════════ -->
 <div id="langScreen">
     <div class="lang-card">
         <div class="logo">🧬</div>
@@ -338,9 +330,6 @@
     </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     2. UYARI MODALI
-══════════════════════════════════════════ -->
 <div id="disclaimerModal">
     <div class="modal-card">
         <div class="modal-header">
@@ -364,9 +353,6 @@
     </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     3. ANA UYGULAMA
-══════════════════════════════════════════ -->
 <div id="app">
 <div class="container">
 
@@ -386,7 +372,7 @@
             <div class="form-group">
                 <label data-key="lbl_i1"></label>
                 <select id="i1">
-                    <option value="0"      data-key="i1_0"></option>
+                    <option value="0"       data-key="i1_0"></option>
                     <option value="i1_cat2" data-key="i1_cat2"></option>
                     <option value="i1_cat3" data-key="i1_cat3"></option>
                     <option value="i1_cat4" data-key="i1_cat4"></option>
@@ -592,20 +578,18 @@
 
             <div class="info-box" data-key="infoBox"></div>
 
-            <div class="details-toggle" onclick="toggleDetails()" data-key="detailsToggle"></div>
+            <div class="details-toggle" onclick="toggleDetails()" id="detailsToggleBtn" data-key="detailsToggle"></div>
             <div class="details-content" id="detailsContent">
                 <div id="calculationDetails"></div>
             </div>
         </div>
     </div>
 
-    <!-- Uyarı Bandı -->
     <div class="disclaimer-banner">
         <div class="disc-icon">⚠️</div>
         <div data-key="bannerText"></div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
         <div class="footer-grid">
             <div class="footer-section">
@@ -644,18 +628,12 @@
 </div>
 
 <script>
-/* ══════════════════════════════════════════
-   ÇEVIRI SÖZLÜĞÜ
-══════════════════════════════════════════ */
 const TRANSLATIONS = {
     tr: {
-        /* Header */
         appTitle:    "pCR Olasılığı Hesaplayıcı",
         appSubtitle: "Neoadjuvan Kemoterapi Sonrası Patolojik Tam Yanıt Tahmini",
         appModel:    "Model 1 — L2 Regularization | Optimal Eşik: %27.7",
         langSwitchBtn: "🌐 English",
-
-        /* Modal */
         modalTitle:   "⚠️ Önemli Uyarı — Lütfen Okuyunuz",
         modalIntro:   "Bu araç, meme kanseri hastalarında neoadjuvan kemoterapi sonrası patolojik tam yanıt (pCR) olasılığını tahmin etmek amacıyla geliştirilmiş bir akademik araştırma aracıdır.",
         modalItems: [
@@ -669,12 +647,8 @@ const TRANSLATIONS = {
         modalHighlight: "⚕️ Bu araçtan elde edilen sonuçlar hiçbir koşulda tek başına klinik karar için kullanılmamalıdır. Her zaman multidisipliner onkoloji ekibinin değerlendirmesi esas alınmalıdır.",
         agreeLabel:   "Yukarıdaki uyarıları okudum, anladım ve bu aracın yalnızca araştırma amaçlı olduğunu kabul ediyorum.",
         acceptBtnText: "✅ Anladım, Devam Et",
-
-        /* Kolonlar */
         colPatient: "📋 Hasta Bilgileri",
         colResults: "📊 Sonuçlar",
-
-        /* Etiketler */
         lbl_i1:  "Histolojik Tip",
         lbl_i2:  "ER Durumu",
         lbl_i3:  "PR Durumu",
@@ -692,8 +666,6 @@ const TRANSLATIONS = {
         lbl_i54: "Kitle Konturu",
         lbl_i55: "Kitle Dansitesi",
         lbl_i56: "Kalsifikasyon Morfolojisi",
-
-        /* Seçenekler */
         i1_0: "İnvaziv Duktal Karsinom (Referans)", i1_cat2: "İnvaziv Lobüler Karsinom (β=−0.1333)", i1_cat3: "Mikst (Duktal+Lobüler) (β=−0.0712)", i1_cat4: "DCIS (β=+0.0205)", i1_cat5: "Diğer Nadir Tipler (β=+0.0374)",
         i2_0: "Güçlü Pozitif (Referans)", i2_cat2: "Negatif (Modelden çıkarılmış)", i2_cat3: "Pozitif (β=−0.0017)", i2_cat4: "Zayıf Pozitif (β=+0.1161)",
         i3_0: "Negatif (Referans)", i3_cat1: "Güçlü Pozitif (β=−0.2422)", i3_cat3: "Pozitif (β=+0.0002)", i3_cat4: "Zayıf Pozitif (β=−0.2703)",
@@ -711,22 +683,16 @@ const TRANSLATIONS = {
         i54_0: "Düzgün (Referans)", i54_cat1: "Belirsiz (β=+0.0190)", i54_cat2: "Düzensiz (β=+0.0397)", i54_cat4: "Mikrolobüle (β=+0.0911)", i54_cat5: "Spiküle (β=−0.1043)",
         i55_0: "Yüksek Dansite (Referans)", i55_cat1: "Düşük Dansite (β=−0.0099)", i55_cat2: "Eş Dansite (β=+0.2683)",
         i56_0: "Kalsifikasyon Yok (Referans)", i56_cat1: "Amorf (β=−0.0140)", i56_cat2: "Coarse/Popcorn (β=−0.0136)", i56_cat3: "İnce Lineer (β=+0.0858)", i56_cat5: "Kesin Benign (β=−0.0340)", i56_cat6: "Pleomorfik (β=−0.2308)", i56_cat7: "Yuvarlak/Punctate (β=+0.0759)",
-
-        /* Buton & Sonuç */
         btnHighPCR:   "Yüksek pCR Kombinasyonu Seç",
         pcrLabel:     "pCR Olasılığı",
         pcrPositive:  "✅ pCR Pozitif",
         pcrNegative:  "❌ pCR Negatif",
-
-        /* Performans */
         perfTitle:  "Model Performans Özeti",
         perfSens:   "Sensitivite",
         perfSpec:   "Spesifisite",
         perfThresh: "Optimal Eşik",
         perfModel:  "Model",
         perfMethod: "Eşik Yöntemi",
-
-        /* Bilgi kutusu */
         infoBox: "<strong>ℹ️ Bilgi:</strong> Bu model, neoadjuvan kemoterapi sonrası pCR olasılığını tahmin eder. Optimal eşik (%27.7) Youden's J indeksi ile belirlenmiştir.",
         detailsToggle: "📋 Hesaplama Detayları",
         detailsBeta0: "β₀ (Sabit)",
@@ -734,11 +700,7 @@ const TRANSLATIONS = {
         detailsNone:  "Hiçbiri (tümü referans kategori)",
         detailsLogit: "Toplam Logit",
         detailsProb:  "pCR Olasılığı",
-
-        /* Banner */
         bannerText: "<strong>Önemli Uyarı — Yalnızca Araştırma Amaçlıdır:</strong> Bu araç akademik araştırma ve eğitim amaçlı geliştirilmiştir. Sunulan tahminler <strong>klinik karar yerine geçmez</strong>; tanı, tedavi planlaması veya hasta yönetiminde tek başına kullanılamaz.",
-
-        /* Footer */
         footCiteTitle:   "Atıf / Citation",
         footCiteDesc:    "Bu aracı akademik çalışmalarınızda kullanıyorsanız lütfen aşağıdaki şekilde atıf yapınız:",
         footCiteRef:     "[Yazar(lar)]. A Logistic Regression-Based pCR Prediction Tool for Breast Cancer. JMIR Cancer. [Yıl];[Cilt]:e[No]. doi:[DOI]",
@@ -759,7 +721,6 @@ const TRANSLATIONS = {
         appSubtitle: "Prediction of Pathological Complete Response After Neoadjuvant Chemotherapy",
         appModel:    "Model 1 — L2 Regularization | Optimal Threshold: 27.7%",
         langSwitchBtn: "🌐 Türkçe",
-
         modalTitle:   "⚠️ Important Warning — Please Read Carefully",
         modalIntro:   "This tool is an academic research instrument developed to estimate the probability of pathological complete response (pCR) after neoadjuvant chemotherapy in breast cancer patients.",
         modalItems: [
@@ -773,10 +734,8 @@ const TRANSLATIONS = {
         modalHighlight: "⚕️ Results obtained from this tool must never be used alone for clinical decision-making under any circumstances. Multidisciplinary oncology team evaluation must always be the primary basis for clinical decisions.",
         agreeLabel:   "I have read and understood the above warnings and acknowledge that this tool is for research purposes only.",
         acceptBtnText: "✅ I Understand, Continue",
-
         colPatient: "📋 Patient Information",
         colResults: "📊 Results",
-
         lbl_i1:  "Histological Type",
         lbl_i2:  "ER Status",
         lbl_i3:  "PR Status",
@@ -794,7 +753,6 @@ const TRANSLATIONS = {
         lbl_i54: "Mass Margin",
         lbl_i55: "Mass Density",
         lbl_i56: "Calcification Morphology",
-
         i1_0: "Invasive Ductal Carcinoma (Reference)", i1_cat2: "Invasive Lobular Carcinoma (β=−0.1333)", i1_cat3: "Mixed (Ductal+Lobular) (β=−0.0712)", i1_cat4: "DCIS (β=+0.0205)", i1_cat5: "Other Rare Types (β=+0.0374)",
         i2_0: "Strongly Positive (Reference)", i2_cat2: "Negative (Excluded from model)", i2_cat3: "Positive (β=−0.0017)", i2_cat4: "Weakly Positive (β=+0.1161)",
         i3_0: "Negative (Reference)", i3_cat1: "Strongly Positive (β=−0.2422)", i3_cat3: "Positive (β=+0.0002)", i3_cat4: "Weakly Positive (β=−0.2703)",
@@ -812,19 +770,16 @@ const TRANSLATIONS = {
         i54_0: "Circumscribed (Reference)", i54_cat1: "Indistinct (β=+0.0190)", i54_cat2: "Irregular (β=+0.0397)", i54_cat4: "Microlobulated (β=+0.0911)", i54_cat5: "Spiculated (β=−0.1043)",
         i55_0: "High Density (Reference)", i55_cat1: "Low Density (β=−0.0099)", i55_cat2: "Equal Density (β=+0.2683)",
         i56_0: "No Calcification (Reference)", i56_cat1: "Amorphous (β=−0.0140)", i56_cat2: "Coarse/Popcorn (β=−0.0136)", i56_cat3: "Fine Linear (β=+0.0858)", i56_cat5: "Definitely Benign (β=−0.0340)", i56_cat6: "Pleomorphic (β=−0.2308)", i56_cat7: "Round/Punctate (β=+0.0759)",
-
         btnHighPCR:   "Select High pCR Combination",
         pcrLabel:     "pCR Probability",
         pcrPositive:  "✅ pCR Positive",
         pcrNegative:  "❌ pCR Negative",
-
         perfTitle:  "Model Performance Summary",
         perfSens:   "Sensitivity",
         perfSpec:   "Specificity",
         perfThresh: "Optimal Threshold",
         perfModel:  "Model",
         perfMethod: "Threshold Method",
-
         infoBox: "<strong>ℹ️ Info:</strong> This model estimates pCR probability after neoadjuvant chemotherapy. The optimal threshold (27.7%) was determined using Youden's J index.",
         detailsToggle: "📋 Calculation Details",
         detailsBeta0: "β₀ (Intercept)",
@@ -832,9 +787,7 @@ const TRANSLATIONS = {
         detailsNone:  "None (all reference categories)",
         detailsLogit: "Total Logit",
         detailsProb:  "pCR Probability",
-
         bannerText: "<strong>Important Warning — For Research Use Only:</strong> This tool was developed for academic research and educational purposes. The predictions provided <strong>do not replace clinical decisions</strong> and cannot be used alone for diagnosis, treatment planning, or patient management.",
-
         footCiteTitle:   "Citation",
         footCiteDesc:    "If you use this tool in academic work, please cite as follows:",
         footCiteRef:     "[Author(s)]. A Logistic Regression-Based pCR Prediction Tool for Breast Cancer. JMIR Cancer. [Year];[Vol]:e[No]. doi:[DOI]",
@@ -851,9 +804,6 @@ const TRANSLATIONS = {
     }
 };
 
-/* ══════════════════════════════════════════
-   MODEL PARAMETRELERİ
-══════════════════════════════════════════ */
 const BETA_0 = -1.294744;
 const OPTIMAL_THRESHOLD = 0.277123;
 const COEFFICIENTS = {
@@ -878,9 +828,6 @@ const COEFFICIENTS = {
     "i56_cat5":-0.03401749634822457,"i56_cat6":-0.23075605427218981,"i56_cat7":0.0758603436790167
 };
 
-/* ══════════════════════════════════════════
-   DİL YÖNETİMİ
-══════════════════════════════════════════ */
 let currentLang = 'tr';
 
 function selectLang(lang) {
@@ -899,147 +846,25 @@ function applyTranslations() {
     const T = TRANSLATIONS[currentLang];
     document.documentElement.lang = currentLang;
 
-    // data-key elementleri güncelle
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
-        if (T[key] !== undefined) {
-            el.innerHTML = T[key];
-        }
+        if (T[key] !== undefined) el.innerHTML = T[key];
     });
 
-    // Select option metinlerini güncelle
     document.querySelectorAll('select option[data-key]').forEach(opt => {
         const key = opt.getAttribute('data-key');
         if (T[key] !== undefined) opt.textContent = T[key];
     });
 
-    // Dil değiştir butonu
     document.getElementById('langSwitchBtn').textContent = T.langSwitchBtn;
 
-    // Footer listeleri
-    const modelList = document.getElementById('footModelList');
-    modelList.innerHTML = T.footModelItems.map(i => `<li>${i}</li>`).join('');
-    const licList = document.getElementById('footLicList');
-    licList.innerHTML = T.footLicItems.map(i => `<li>${i}</li>`).join('');
+    document.getElementById('footModelList').innerHTML = T.footModelItems.map(i => `<li>${i}</li>`).join('');
+    document.getElementById('footLicList').innerHTML   = T.footLicItems.map(i => `<li>${i}</li>`).join('');
 
-    // Footer bottom linkleri
     document.querySelector('[data-key="footPrivacy"]').textContent = T.footPrivacy;
     document.querySelector('[data-key="footTerms"]').textContent   = T.footTerms;
 }
 
-/* ══════════════════════════════════════════
-   UYARI MODALI
-══════════════════════════════════════════ */
 function showDisclaimer() {
     const T = TRANSLATIONS[currentLang];
-    const modal = document.getElementById('disclaimerModal');
-
-    document.getElementById('modalTitle').textContent   = T.modalTitle;
-    document.getElementById('modalIntro').textContent   = T.modalIntro;
-    document.getElementById('modalHighlight').innerHTML = T.modalHighlight;
-    document.getElementById('agreeLabel').innerHTML     = T.agreeLabel;
-    document.getElementById('acceptBtnText').textContent = T.acceptBtnText;
-
-    const list = document.getElementById('modalList');
-    list.innerHTML = T.modalItems.map(i => `<li>${i}</li>`).join('');
-
-    // Checkbox sıfırla
-    document.getElementById('agreeCheck').checked = false;
-    document.getElementById('acceptBtn').disabled = true;
-    document.getElementById('acceptBtn').classList.remove('enabled');
-
-    modal.classList.add('active');
-}
-
-function toggleAccept() {
-    const checked = document.getElementById('agreeCheck').checked;
-    const btn     = document.getElementById('acceptBtn');
-    btn.disabled  = !checked;
-    checked ? btn.classList.add('enabled') : btn.classList.remove('enabled');
-}
-
-function acceptDisclaimer() {
-    if (!document.getElementById('agreeCheck').checked) return;
-    document.getElementById('disclaimerModal').classList.remove('active');
-    const app = document.getElementById('app');
-    app.classList.add('visible');
-    applyTranslations();
-    calculatePCR();
-}
-
-/* ══════════════════════════════════════════
-   HESAPLAMA
-══════════════════════════════════════════ */
-function calculatePCR() {
-    const T = TRANSLATIONS[currentLang];
-    let logit = BETA_0;
-    let details = [];
-
-    const ids = ['i1','i2','i3','i4','i5','i6','i7','i8','i10',
-                 'i12','i13','i14','i15','i53','i54','i55','i56'];
-
-    ids.forEach(id => {
-        const val = document.getElementById(id).value;
-        if (val !== '0' && val !== '' && COEFFICIENTS[val] !== undefined) {
-            const coef = COEFFICIENTS[val];
-            logit += coef;
-            details.push(`${id}: ${val} = ${coef >= 0 ? '+' : ''}${coef.toFixed(6)}`);
-        }
-    });
-
-    const pcrProb = 1 / (1 + Math.exp(-logit));
-
-    document.getElementById('pcrValue').textContent      = `${(pcrProb * 100).toFixed(2)}%`;
-    document.getElementById('progressFill').style.width  = `${Math.min(100, pcrProb * 100)}%`;
-    document.getElementById('thresholdLine').style.left  = `${OPTIMAL_THRESHOLD * 100}%`;
-
-    const cls = document.getElementById('classification');
-    if (pcrProb >= OPTIMAL_THRESHOLD) {
-        cls.textContent  = T.pcrPositive;
-        cls.className    = 'classification pcr-positive';
-    } else {
-        cls.textContent  = T.pcrNegative;
-        cls.className    = 'classification pcr-negative';
-    }
-    cls.style.display = 'block';
-
-    document.getElementById('calculationDetails').innerHTML = `
-        <strong>${T.detailsBeta0}:</strong> ${BETA_0.toFixed(6)}<br>
-        <strong>${T.detailsCoefs}:</strong><br>
-        ${details.length ? details.join('<br>') : T.detailsNone}<br><br>
-        <strong>${T.detailsLogit}:</strong> ${logit.toFixed(6)}<br>
-        <strong>${T.detailsProb}:</strong> 1 / (1 + e<sup>−${logit.toFixed(4)}</sup>)
-        = <strong>${(pcrProb * 100).toFixed(2)}%</strong>
-    `;
-}
-
-function selectHighPCRCombination() {
-    const positiveCoefs = Object.entries(COEFFICIENTS)
-        .filter(([, v]) => v > 0)
-        .sort((a, b) => b[1] - a[1]);
-
-    positiveCoefs.slice(0, 10).forEach(([key]) => {
-        const varCode = key.split('_')[0];
-        const sel = document.getElementById(varCode);
-        if (sel) sel.value = key;
-    });
-    calculatePCR();
-}
-
-function toggleDetails() {
-    document.getElementById('detailsContent').classList.toggle('show');
-}
-
-/* ══════════════════════════════════════════
-   BAŞLANGIÇ
-══════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('select').forEach(s => {
-        s.addEventListener('change', calculatePCR);
-    });
-});
-</script>
-
-</body>
-</html>
-
+    document.
